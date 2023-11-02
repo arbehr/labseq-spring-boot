@@ -23,6 +23,11 @@ http://localhost:8080/labseq/n
 http://localhost:8080/swagger-ui/index.html
 ```
 
+4. Testing:
+```console
+$ mvn test -Dtest=LabseqApplicationTests
+```
+
 ## Algorithm
 
 The labseq – l(n) - sequence is defined as follows:
