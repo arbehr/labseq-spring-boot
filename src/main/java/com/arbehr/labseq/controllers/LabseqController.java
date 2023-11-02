@@ -1,5 +1,9 @@
 package com.arbehr.labseq.controllers;
 
+import java.math.BigInteger;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +32,8 @@ public class LabseqController {
             if (number < 0) {
                 return new ResponseEntity<>("The number must be any non-negative integer.", HttpStatus.BAD_REQUEST);
             }
-            return new ResponseEntity<>(String.valueOf(labSeqService.calcLabSeq(number)), HttpStatus.OK);
+            BigInteger result = labSeqService.calcLabSeq(number);
+            return new ResponseEntity<>(result.toString(), HttpStatus.OK);
         }
         catch (NumberFormatException ex){
             return new ResponseEntity<>("The number must be any non-negative integer.", HttpStatus.BAD_REQUEST);

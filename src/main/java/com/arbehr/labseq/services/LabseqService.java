@@ -1,5 +1,7 @@
 package com.arbehr.labseq.services;
 
+import java.math.BigInteger;
+
 import org.springframework.stereotype.Service;
 
 import com.arbehr.labseq.util.LabseqHashMap;
@@ -13,19 +15,19 @@ public class LabseqService {
         this.labseqHashMap = new LabseqHashMap();
     }
 
-    public int calcLabSeq(int n) {
+    public BigInteger calcLabSeq(int n) {
         if (labseqHashMap.exist(n)) {
             return labseqHashMap.getResult(n);
         }
 
         if (n == 0 || n == 2) {
-            return 0;
+            return new BigInteger("0");
         }
         if (n == 1 || n == 3) {
-            return 1;
+            return new BigInteger("1");
         }
         
-        int result = calcLabSeq(n - 4) + calcLabSeq(n - 3);
+        BigInteger result = calcLabSeq(n - 4).add(calcLabSeq(n - 3));
         labseqHashMap.insert(n, result);
         
         return result;
